@@ -15,13 +15,14 @@ const Login = () => {
 
   const handleShow = () => setShow((prev) => !prev);
 
-  const [values, setValues] = useState<FormValues>({
+  const initialFormValues: FormValues = {
     name: "",
     lname: "",
     email: "",
     password: "",
     cPassword: "",
-  });
+  };
+  const [values, setValues] = useState<FormValues>(initialFormValues);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,6 +36,7 @@ const Login = () => {
     e.preventDefault();
     console.log(values, "submitted values");
     // Optional: Add validation here
+    setValues(initialFormValues);
   };
 
   const commonInputClasses =
