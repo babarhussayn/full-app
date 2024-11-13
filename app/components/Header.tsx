@@ -53,9 +53,15 @@ const Header = () => {
         <div className="flex justify-center items-center gap-6">
           <Button
             className="bg-[#9d689d]  ease-in transition-all duration-100 hover:bg-[#662f66]"
-            onClick={() => router.push("/login")}
+            onClick={() => router.push("/auth/login")}
           >
             Login
+          </Button>
+          <Button
+            className="bg-[#9d689d]  ease-in transition-all duration-100 hover:bg-[#662f66]"
+            onClick={() => router.push("/auth/signup")}
+          >
+            signup
           </Button>
         </div>
       </div>
