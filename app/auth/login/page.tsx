@@ -1,8 +1,13 @@
 "use client";
 
+import { postData } from "@/constants/service";
+import { toast } from "@/hooks/use-toast";
+// import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const LoginPage = () => {
+  // const router = useRouter();
+
   interface FormValues {
     name: string;
     lname: string;
@@ -28,11 +33,24 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(values, "submitted values");
-    // Optional: Add validation here
-    setValues(initialFormValues);
+
+    const response: { status: boolean; message: string } = await postData(
+      "/user/login",
+      values
+    );
+    if (response.status) {
+      toast({
+        variant: "destructive",
+        title: response.message,
+      });
+    } else {
+      toast({
+        title: response.message,
+      });
+      // router.push("/");
+    }
   };
 
   const commonInputClasses =
@@ -43,9 +61,7 @@ const LoginPage = () => {
       <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-6 py-8">
         <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 sm:p-8">
-            <h1 className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              {show ? "Log in to your account" : "Create a new account"}
-            </h1>
+            <h1 className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white"></h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -55,7 +71,6 @@ const LoginPage = () => {
                   Email
                 </label>
                 <input
-                  id="email"
                   type="email"
                   name="email"
                   value={values.email}
@@ -73,7 +88,6 @@ const LoginPage = () => {
                   Password
                 </label>
                 <input
-                  id="password"
                   type="password"
                   name="password"
                   value={values.password}

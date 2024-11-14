@@ -2,15 +2,19 @@
 // import { Button } from "@/components/ui/button";
 import { postData } from "@/constants/service";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
 const Signup = () => {
   const { toast } = useToast();
   const router = useRouter();
-  const tokenCreated = useSelector((state: any) => state.user.token); //+
 
+  // const [showPassword, setShowPassword] = useState(false);
+
+  // const handelshow = () => {
+  //   setShowPassword((show) => !show);
+  // };
   interface FormValues {
     name: string;
     lname: string;
@@ -44,27 +48,21 @@ const Signup = () => {
     e.preventDefault();
     console.log(values, "submitted values");
 
-    // setValues(initialFormValues);
-
     const response: { status: boolean; message: string } = await postData(
-      "/user/signin",
-      initialFormValues,
-      tokenCreated
+      "/user/signup",
+      values
     );
 
-    console.log(response);
-
     if (response.status) {
+      toast({
+        variant: "destructive",
+        title: response.message,
+      });
+    } else {
       toast({
         title: response.message,
       });
       router.push("/");
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
-      });
     }
   };
 
@@ -89,7 +87,6 @@ const Signup = () => {
                     First Name
                   </label>
                   <input
-                    id="name"
                     type="text"
                     name="name"
                     value={values.name}
@@ -107,7 +104,6 @@ const Signup = () => {
                     Last Name
                   </label>
                   <input
-                    id="lname"
                     type="text"
                     name="lname"
                     value={values.lname}
@@ -127,7 +123,6 @@ const Signup = () => {
                   Email
                 </label>
                 <input
-                  id="email"
                   type="email"
                   name="email"
                   value={values.email}

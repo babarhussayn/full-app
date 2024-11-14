@@ -1,10 +1,10 @@
 import { BASE_URL } from "@/utils/services";
 
-export const postData = async (api: string, body: object, token: string) => {
+export const postData = async (api: string, body: object) => {
   const res = await fetch(`${BASE_URL}${api}`, {
     method: "POST",
     headers: {
-      token,
+      "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify(body),
   });
