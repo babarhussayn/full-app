@@ -1,6 +1,9 @@
 import React, { ReactNode } from "react";
-import Header from "../components/Header";
+
 import Footer from "../components/Footer";
+
+import Subwrapper from "./Subwrapper";
+import Banner from "../components/Banner";
 
 interface wrapperProps {
   children: ReactNode;
@@ -9,7 +12,8 @@ interface wrapperProps {
 const Wrapper: React.FC<wrapperProps> = ({ children }) => {
   return (
     <>
-      <Header />
+      <Subwrapper />
+      <Banner />
       {children}
       <Footer />
     </>

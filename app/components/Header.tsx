@@ -1,57 +1,25 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import React from "react";
-import { useRouter } from "next/navigation";
-interface NavItem {
-  name: string;
-  link: string;
-}
+// import { Button } from "@/components/ui/button";
 
-const navItem: NavItem[] = [
-  {
-    name: "Home",
-    link: "/",
-  },
-  {
-    name: "products",
-    link: "/products",
-  },
-  {
-    name: "blogs",
-    link: "/blog",
-  },
-  {
-    name: "contact",
-    link: "/contact",
-  },
-];
+import React from "react";
+// import { useRouter } from "next/navigation";
+import Searchbar from "./Searchbar";
 
 const Header = () => {
-  const router = useRouter();
+  // const router = useRouter();
   return (
-    <div className="bg-[#803b80c5] sticky p-4">
+    <div className="">
       <div className="flex justify-center items-center gap-12">
         <div className="flex flex-1">
           <div>
-            <h4>Logo</h4>
+            <h4 className="text-4xl font-bold text-[#595959]">Footwear</h4>
           </div>
         </div>
-        <div className="flex flex-1">
-          <div className="flex justify-center items-center gap-4">
-            {navItem.map((item, index) => (
-              <div
-                key={index}
-                className="flex justify-center items-center gap-4"
-              >
-                <Link href={item.link}> {item.name.toLocaleUpperCase()}</Link>
-              </div>
-            ))}
-          </div>
-        </div>
+
         <div className="flex justify-center items-center gap-6">
-          <Button
+          <Searchbar />
+          {/* <Button
             className="bg-[#9d689d]  ease-in transition-all duration-100 hover:bg-[#662f66]"
             onClick={() => router.push("/auth/login")}
           >
@@ -62,7 +30,7 @@ const Header = () => {
             onClick={() => router.push("/auth/signup")}
           >
             signup
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
