@@ -1,0 +1,35 @@
+[
+  {
+    "src": "/images/shoes-1.jpg",
+    "alt": "shoes-1",
+    "title": "New Arrival",
+    "description": "Up to 30% off",
+    "para": "new stylish shoes for men",
+    "link": "/products"
+  },
+  {
+    "src": "/images/shoes-2.jpg",
+    "alt": "shoes-1",
+    "title": "Men's Shoes",
+    "description": "Up to 25% off",
+    "para": "new stylish shoes for men",
+    "link": "/products"
+  },
+  {
+    "src": "/images/shoes-3.jpg",
+    "alt": "shoes-1",
+
+    "title": "Huge sale",
+    "description": "Up to 10% off",
+    "para": "new stylish shoes for men",
+    "link": "/products"
+  },
+  {
+    "src": "/images/shoes-4.jpg",
+    "alt": "shoes-1",
+    "title": "New Arrival",
+    "description": "Up to 20% off",
+    "para": "new stylish shoes for men",
+    "link": "/products"
+  }
+]
