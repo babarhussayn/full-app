@@ -3,7 +3,7 @@ import React from "react";
 
 const Homepage = () => {
   return (
-    <section>
+    <section className="mb-28">
       <CarouBanner />
     </section>
   );

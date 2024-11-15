@@ -4,8 +4,8 @@ import React from "react";
 
 const CollectionPage = () => {
   return (
-    <section className="min-h-screen w-full mt-8">
-      <div className="w-[1000px] m-8">
+    <section className="min-h-screen w-full  overflow-hidden">
+      <div className="w-full m-8">
         <div className="flex justify-center items-center ">
           <h3 className="font-bold text-[30px] text-center w-[800px]">
             It started with a simple idea: Create quality, well-designed
@@ -13,9 +13,9 @@ const CollectionPage = () => {
           </h3>
         </div>
       </div>
-      <div className="flex justify-between gap-4 items-center ">
-        <div className="w-[48%]">
-          <div className="w-full h-[400px] relative">
+      <div className="flex justify-between gap-6 items-center ">
+        <div className="w-[48%] ml-8">
+          <div className="w-full h-[500px] relative">
             <Link href="/">
               <Image
                 src="/images/men.jpg"
@@ -25,10 +25,18 @@ const CollectionPage = () => {
               />
             </Link>
           </div>
-          <div>content</div>
+          <div className="flex justify-center items-center mt-8">
+            <div>
+              <Link href="/">
+                <h2 className="font-bold text-[32px] ">
+                  Shop Men&#39;s Collection
+                </h2>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="w-[49%]">
-          <div className="w-full h-[400px] relative">
+        <div className="w-[49%] mr-8">
+          <div className="w-full h-[500px] relative">
             <Link href="/">
               <Image
                 src="/images/women.jpg"
@@ -38,7 +46,15 @@ const CollectionPage = () => {
               />
             </Link>
           </div>
-          <div>content</div>
+          <div className="flex justify-center items-center mt-8">
+            <div>
+              <Link href="/">
+                <h2 className="font-bold text-[32px] ">
+                  Shop Women&#39;s Collection
+                </h2>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
