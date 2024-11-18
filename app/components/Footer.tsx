@@ -9,9 +9,9 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <section className="mt-10 mb-14">
-      <div className="flex justify-center items-center w-full">
-        <div className="flex justify-around  md:w-[1200px] flex-start">
-          <div className="w-[15%]">
+      <div className="flex justify-center items-center  w-full">
+        <div className="flex justify-around  md:w-[1200px]  flex-col md:flex-row p-6 md:p-0">
+          <div className="md:w-[15%] w-full">
             <h3 className="font-thin text-[18px] uppercase">about Footwear </h3>
             <div className="flex justify-center gap-4 flex-col mt-8">
               <div>

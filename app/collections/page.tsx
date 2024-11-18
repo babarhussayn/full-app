@@ -5,16 +5,16 @@ import React from "react";
 const CollectionPage = () => {
   return (
     <section className="min-h-screen w-full  overflow-hidden">
-      <div className="w-full m-8">
+      <div className="w-full md:m-8 p-4 md:p-0">
         <div className="flex justify-center items-center ">
-          <h3 className="font-bold text-[30px] text-center w-[800px]">
+          <h3 className="font-bold md:text-[30px] text-center md:w-[800px] ">
             It started with a simple idea: Create quality, well-designed
             products that I wanted myself.
           </h3>
         </div>
       </div>
-      <div className="flex justify-between gap-6 items-center ">
-        <div className="w-[48%] ml-8">
+      <div className="flex justify-between gap-6 items-center flex-col md:flex-row">
+        <div className="md:w-[48%] md:ml-8">
           <div className="w-full h-[500px] relative">
             <Link href="/">
               <Image
@@ -35,7 +35,7 @@ const CollectionPage = () => {
             </div>
           </div>
         </div>
-        <div className="w-[49%] mr-8">
+        <div className="md:w-[49%] md:mr-8">
           <div className="w-full h-[500px] relative">
             <Link href="/">
               <Image
