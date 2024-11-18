@@ -6,7 +6,7 @@ const Subwrapper = () => {
   return (
     <>
       <div className="w-full justify-center items-center flex flex-col ">
-        <div className="w-[1200px] p-14 flex flex-col items-center gap-14">
+        <div className="md:w-[1200px] p-14 flex flex-col items-center gap-14">
           <div className="w-full">
             <Header />
           </div>

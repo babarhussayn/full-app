@@ -47,9 +47,9 @@ const TrustedPartnerPage = () => {
               </h2>
             </div>
           </div>
-          <div className="w-full h-[300px] ">
+          <div className="md:w-full md:h-[300px] ">
             <div className=" flex justify-center ">
-              <div className="flex justify-center items-center gap-8 overflow-hidden">
+              <div className="flex justify-center items-center flex-col md:flex-row gap-8 overflow-hidden">
                 {Logoitems.map((item, index) => (
                   <div key={index} className="">
                     <Image
