@@ -3,8 +3,8 @@ import React from "react";
 const Searchbar = () => {
   return (
     <div>
-      <form className="max-w-md mx-auto">
-        <div className="relative w-full">
+      <form className="md:max-w-md md:mx-auto">
+        <div className="relative md:w-full">
           <input
             type="search"
             id="location-search"

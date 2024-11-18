@@ -1,7 +1,7 @@
-import BestSellerPage from "./pages/best-seller/page";
-import CollectionPage from "./pages/collections/page";
-import Homepage from "./pages/home/page";
-import TrustedPartnerPage from "./pages/trusted-partner/page";
+import BestSellerPage from "./best-seller/page";
+import CollectionPage from "./collections/page";
+import Homepage from "./home/page";
+import TrustedPartnerPage from "./trusted-partner/page";
 
 export default function Home() {
   return (

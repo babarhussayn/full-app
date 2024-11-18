@@ -38,7 +38,7 @@ const SubHeader = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center ">
+      <div className="md:flex justify-between items-center hidden">
         <div className="flex flex-1">
           <div className="flex justify-center items-center gap-4">
             {navItem.map((item, index) => (

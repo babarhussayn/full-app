@@ -10,8 +10,8 @@ const Header = () => {
   // const router = useRouter();
   return (
     <div className="">
-      <div className="flex justify-center items-center gap-12">
-        <div className="flex flex-1">
+      <div className="flex justify-center items-center   md:gap-12">
+        <div className="md:flex md:flex-1">
           <div>
             <h4 className="text-4xl font-bold text-[#595959]">Footwear</h4>
           </div>
@@ -32,6 +32,7 @@ const Header = () => {
             signup
           </Button> */}
         </div>
+        <div className="md:hidden absolute">Icon</div>
       </div>
     </div>
   );

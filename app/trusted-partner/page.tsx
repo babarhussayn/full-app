@@ -37,7 +37,7 @@ const Logoitems: LogoItem[] = [
 
 const TrustedPartnerPage = () => {
   return (
-    <section>
+    <section className="mt-28">
       <div className="w-full">
         <div className="flex justify-center items-center flex-col gap-16">
           <div>
