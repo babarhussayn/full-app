@@ -1,7 +1,7 @@
 import React from "react";
 
 const BestSellerPage = () => {
-  return <div>page</div>;
+  return <section className="w-full min-h-screen"></section>;
 };
 
 export default BestSellerPage;
