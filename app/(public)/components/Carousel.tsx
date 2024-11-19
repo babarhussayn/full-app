@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Carousel } from "antd";
-import Data from "../../shoesData.json";
+import Data from "../../../shoesData.json";
 import Image from "next/image";
 import Link from "next/link";
 

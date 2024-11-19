@@ -1,6 +1,6 @@
 import React from "react";
-import { Customer } from "../../mapscont/footerCon";
-import { InformationItem } from "../../mapscont/footerCon";
+import { Customer } from "../../../mapscont/footerCon";
+import { InformationItem } from "../../../mapscont/footerCon";
 import { FaTwitter } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";

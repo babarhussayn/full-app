@@ -1,4 +1,4 @@
-import CarouBanner from "@/app/components/Carousel";
+import CarouBanner from "@/app/(public)/components/Carousel";
 import React from "react";
 
 const Homepage = () => {
