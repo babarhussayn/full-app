@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import ShoeItem from "../../../bestseller.json";
+import ShoeItem from "../../../../bestseller.json";
 import Image from "next/image";
 
 interface Product {
