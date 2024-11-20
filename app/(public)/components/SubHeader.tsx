@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { LuShoppingCart } from "react-icons/lu";
 import { useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
 interface NavItem {
   name: string;
   link: string;
@@ -31,6 +32,8 @@ const navItem: NavItem[] = [
   },
 ];
 const SubHeader = () => {
+  const router = useRouter();
+
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleAct = (index: number) => {
@@ -62,11 +65,18 @@ const SubHeader = () => {
             ))}
           </div>
         </div>
-        <div className="flex justify-center items-center gap-2 relative">
+        <div
+          className="flex justify-center items-center gap-2 relative cursor-pointer "
+          onClick={() => router.push("/cart")}
+        >
           <div className="">
-            <LuShoppingCart size={35} />
+            <LuShoppingCart
+              size={35}
+              cursor="pointer"
+              className="cursor-pointer"
+            />
           </div>
-          <div className="absolute translate-x-2 mb-6 text-[34px]">
+          <div className="absolute translate-x-2 mb-10 text-[34px]">
             {items.length}
           </div>
         </div>

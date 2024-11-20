@@ -3,11 +3,11 @@
 import { postData } from "@/constants/service";
 import { toast } from "@/hooks/use-toast";
 
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const LoginPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   interface FormValues {
     email: string;
@@ -37,15 +37,13 @@ const LoginPage = () => {
     );
     if (response.status) {
       toast({
-        variant: "default",
         title: response.message,
       });
+      router.push("/dashboard");
     } else {
       toast({
-        variant: "destructive",
         title: response.message,
       });
-      // router.push("/");
     }
   };
 
