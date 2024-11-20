@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ShoeItem from "../../../../bestseller.json";
 import Image from "next/image";
-
+import { useAppDispatch } from "@/redux/hooks";
+import { add, CartItem } from "@/redux/carSlice";
 interface Product {
   id: string;
   name: string;
@@ -14,6 +15,21 @@ interface Product {
 }
 const products: Product[] = ShoeItem;
 const Detail = () => {
+  const dispatch = useAppDispatch();
+
+  const handleAddTo = () => {
+    if (!productsItem) return;
+    const cartItem: CartItem = {
+      id: productsItem.id,
+      name: productsItem.name,
+      image: productsItem.src, // Ensure image maps correctly
+      price: parseFloat(productsItem.Price), // Convert string to number
+      quantity: 1, // Default quantity
+    };
+    dispatch(add(cartItem));
+    console.log("add to product", cartItem);
+  };
+
   const params = useParams();
 
   const [productsItem, setProductItem] = useState<Product | null>(null);
@@ -210,6 +226,7 @@ const Detail = () => {
               <div className="flex flex-wrap gap-4">
                 <button
                   type="button"
+                  onClick={handleAddTo}
                   className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded"
                 >
                   Add to cart

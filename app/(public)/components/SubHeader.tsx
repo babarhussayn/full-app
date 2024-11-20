@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { LuShoppingCart } from "react-icons/lu";
+import { useAppSelector } from "@/redux/hooks";
 interface NavItem {
   name: string;
   link: string;
@@ -36,6 +37,8 @@ const SubHeader = () => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  const items = useAppSelector((state) => state.cart.items);
+
   return (
     <>
       <div className="md:flex justify-between items-center hidden">
@@ -59,12 +62,12 @@ const SubHeader = () => {
             ))}
           </div>
         </div>
-        <div className="flex justify-center items-center gap-2">
-          <div>
-            <LuShoppingCart size={25} />
+        <div className="flex justify-center items-center gap-2 relative">
+          <div className="">
+            <LuShoppingCart size={35} />
           </div>
-          <div>
-            <p>CART </p>
+          <div className="absolute translate-x-2 mb-6 text-[34px]">
+            {items.length}
           </div>
         </div>
       </div>

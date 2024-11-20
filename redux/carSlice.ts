@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// export interface ImageType {
-//   thumbnail: string;
-//   mobile: string;
-//   tablet: string;
-//   desktop: string;
-// }
-
 export interface CartItem {
   id: string;
   name: string;
