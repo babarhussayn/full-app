@@ -29,7 +29,7 @@ const BestSellerPage = () => {
                     <div className="flex justify-center items-center flex-col gap-4 p-4">
                       <h4>{items.name.toLocaleUpperCase()}</h4>
                       <p>{items.title.toLocaleUpperCase()}</p>
-                      <span>{items.Price}</span>
+                      <span>{items.price}</span>
                     </div>
                   </div>
                 </div>

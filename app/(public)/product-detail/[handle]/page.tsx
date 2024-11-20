@@ -11,7 +11,7 @@ interface Product {
   name: string;
   src: string;
   title: string;
-  Price: string;
+  price: number;
 }
 const products: Product[] = ShoeItem;
 const Detail = () => {
@@ -23,7 +23,7 @@ const Detail = () => {
       id: productsItem.id,
       name: productsItem.name,
       image: productsItem.src, // Ensure image maps correctly
-      price: parseFloat(productsItem.Price), // Convert string to number
+      price: productsItem.price, // Convert string to number
       quantity: 1, // Default quantity
     };
     dispatch(add(cartItem));
@@ -116,7 +116,7 @@ const Detail = () => {
 
             <div className="max-w-xl">
               <p className="text-gray-800 text-3xl font-bold">
-                {productsItem.Price}
+                ${productsItem.price}
               </p>
               <div className="flex space-x-1 mt-4">
                 <svg
