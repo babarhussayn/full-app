@@ -1,6 +1,8 @@
-import type { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
+
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 export const options: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -21,11 +23,12 @@ export const options: NextAuthOptions = {
           placeholder: "password",
         },
       },
+
       async authorize(credentials) {
         const user = { id: "2", name: "babar", password: "babar123" };
         if (
-          credentials.username === user.name &&
-          credentials.password === user.password
+          credentials?.username === user.name &&
+          credentials?.password === user.password
         ) {
           return user;
         } else {
