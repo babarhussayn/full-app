@@ -17,8 +17,10 @@ const products: Product[] = ShoeItem;
 const Detail = () => {
   const dispatch = useAppDispatch();
 
+  const [isAdded, setIsAdded] = useState(false);
+
   const handleAddTo = () => {
-    if (!productsItem) return;
+    if (!productsItem || isAdded) return;
     const cartItem: CartItem = {
       id: productsItem.id,
       name: productsItem.name,
@@ -27,6 +29,7 @@ const Detail = () => {
       quantity: 1, // Default quantity
     };
     dispatch(add(cartItem));
+    setIsAdded(true);
     console.log("add to product", cartItem);
   };
 
@@ -226,6 +229,7 @@ const Detail = () => {
               <div className="flex flex-wrap gap-4">
                 <button
                   type="button"
+                  disabled={isAdded}
                   onClick={handleAddTo}
                   className="min-w-[200px] px-4 py-2.5 border border-gray-800 bg-transparent hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded"
                 >
