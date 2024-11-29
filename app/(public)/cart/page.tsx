@@ -65,9 +65,7 @@ const CartPage = () => {
                           <h6 className="font-semibold text-base leading-7 text-black">
                             {item.name}
                           </h6>
-                          <h6 className="font-normal text-base leading-7 text-gray-500">
-                            Perfumes
-                          </h6>
+                          <h6 className="font-normal text-base leading-7 text-gray-500"></h6>
                           <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-indigo-600">
                             ${item.price}
                           </h6>
