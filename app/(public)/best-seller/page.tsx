@@ -18,7 +18,12 @@ const BestSellerPage = async () => {
                 products.data.map((items, index) => (
                   <div key={index}>
                     <div className="flex justify-center items-center flex-col gap-4 border ">
-                      <Link href={`/product-detail/${items.name}`}>
+                      <Link
+                        href={`/product-detail/${items.name.replaceAll(
+                          " ",
+                          "-"
+                        )}`}
+                      >
                         <div>
                           {items?.imageurl && items.imageurl[0] ? (
                             <Image

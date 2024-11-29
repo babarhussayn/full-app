@@ -13,10 +13,11 @@ interface Product {
   imageurl: string;
   title: string;
   price: number;
+  description: string;
 }
 const products: Product[] = (await getData("product/all-product")).data;
 console.log(products);
-console.log(Array.isArray(products));
+// console.log(Array.isArray(products));
 const Detail = () => {
   const dispatch = useAppDispatch();
 
@@ -27,9 +28,9 @@ const Detail = () => {
     const cartItem: CartItem = {
       id: productsItem.id,
       name: productsItem.name,
-      image: productsItem.imageurl, // Ensure image maps correctly
-      price: productsItem.price, // Convert string to number
-      quantity: 1, // Default quantity
+      image: productsItem.imageurl,
+      price: productsItem.price,
+      quantity: 1,
     };
     dispatch(add(cartItem));
     setIsAdded(true);
@@ -37,15 +38,19 @@ const Detail = () => {
   };
 
   const params = useParams();
-
+  console.log("params", params);
   const [productsItem, setProductItem] = useState<Product | null>(null);
 
   useEffect(() => {
-    const p = products.find((product) => product.name === params.handle);
+    const p = products.find(
+      (product) => product.name.replaceAll(" ", "-") === params.handle
+    );
+    console.log(p);
     if (p) {
       setProductItem(p);
     }
   }, [params.handle]);
+
   if (!productsItem) {
     return <div>Loading...</div>;
   }
@@ -65,16 +70,24 @@ const Detail = () => {
             <div>
               <div className="flex gap-4 text-center">
                 <div className="bg-gray-100 p-4 flex items-center sm:h-[380px] rounded relative w-[600px]">
-                  <Image src={productsItem.imageurl} alt="image" fill />
+                  {productsItem?.imageurl[0] ? (
+                    <Image
+                      src={productsItem.imageurl[0]}
+                      alt={productsItem.name}
+                      fill
+                    />
+                  ) : (
+                    <p>No image available</p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
-                    <Image src={productsItem.imageurl} alt="image" fill />
+                    <Image src={productsItem?.imageurl[1]} alt="image" fill />
                   </div>
 
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
-                    <Image src={productsItem.imageurl} alt="image" fill />
+                    <Image src={productsItem?.imageurl[0]} alt="image" fill />
                   </div>
                 </div>
               </div>
@@ -91,11 +104,7 @@ const Detail = () => {
                     Product Description
                   </h3>
                   <p className="text-sm text-gray-600 mt-4">
-                    Step up your footwear game with our premium mens shoes.
-                    Designed for comfort and crafted with a contemporary
-                    aesthetic, these versatile shoes are a must-have addition to
-                    your wardrobe. The supple and breathable materials ensure
-                    all-day comfort, making them perfect for everyday wear.
+                    {productsItem.description}
                   </p>
                 </div>
 
