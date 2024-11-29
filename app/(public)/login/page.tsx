@@ -1,7 +1,7 @@
 "use client";
 
-import Signup from "../auth/signup/page";
-import LoginPage from "../auth/login/page";
+import Signup from "@/app/auth/signup/page";
+import LoginPage from "@/app/auth/login/page";
 
 const Login = () => {
   return (

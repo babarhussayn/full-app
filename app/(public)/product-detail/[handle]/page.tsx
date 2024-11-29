@@ -2,18 +2,21 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import ShoeItem from "../../../../bestseller.json";
+// import ShoeItem from "../../../../bestseller.json";
 import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
 import { add, CartItem } from "@/redux/carSlice";
+import { getData } from "@/constants/service";
 interface Product {
   id: string;
   name: string;
-  src: string;
+  imageurl: string;
   title: string;
   price: number;
 }
-const products: Product[] = ShoeItem;
+const products: Product[] = (await getData("product/all-product")).data;
+console.log(products);
+console.log(Array.isArray(products));
 const Detail = () => {
   const dispatch = useAppDispatch();
 
@@ -24,7 +27,7 @@ const Detail = () => {
     const cartItem: CartItem = {
       id: productsItem.id,
       name: productsItem.name,
-      image: productsItem.src, // Ensure image maps correctly
+      image: productsItem.imageurl, // Ensure image maps correctly
       price: productsItem.price, // Convert string to number
       quantity: 1, // Default quantity
     };
@@ -38,7 +41,7 @@ const Detail = () => {
   const [productsItem, setProductItem] = useState<Product | null>(null);
 
   useEffect(() => {
-    const p = products.find((product) => product.id === params.handle);
+    const p = products.find((product) => product.name === params.handle);
     if (p) {
       setProductItem(p);
     }
@@ -62,16 +65,16 @@ const Detail = () => {
             <div>
               <div className="flex gap-4 text-center">
                 <div className="bg-gray-100 p-4 flex items-center sm:h-[380px] rounded relative w-[600px]">
-                  <Image src={productsItem.src} alt="image" fill />
+                  <Image src={productsItem.imageurl} alt="image" fill />
                 </div>
 
                 <div className="space-y-4">
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
-                    <Image src={productsItem.src} alt="image" fill />
+                    <Image src={productsItem.imageurl} alt="image" fill />
                   </div>
 
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
-                    <Image src={productsItem.src} alt="image" fill />
+                    <Image src={productsItem.imageurl} alt="image" fill />
                   </div>
                 </div>
               </div>
