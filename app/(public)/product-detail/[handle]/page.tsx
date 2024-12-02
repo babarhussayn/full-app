@@ -7,7 +7,11 @@ import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
 import { add, CartItem } from "@/redux/carSlice";
 import { getData } from "@/constants/service";
+import { Metadata } from "next";
 
+export const metaData: Metadata = {
+  title: "product",
+};
 interface Product {
   _id: string;
   name: string;
