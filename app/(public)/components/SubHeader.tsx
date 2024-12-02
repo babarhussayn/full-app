@@ -16,11 +16,11 @@ const navItem: NavItem[] = [
   },
   {
     name: "Men",
-    link: "/men",
+    link: "/product/men",
   },
   {
     name: "Women",
-    link: "/blog",
+    link: "/product/women",
   },
   {
     name: "About",
