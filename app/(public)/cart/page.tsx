@@ -4,11 +4,19 @@ import React from "react";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
-import { decreament, increament, remove } from "@/redux/carSlice";
+import { CartItem, decreament, increament, remove } from "@/redux/carSlice";
 import { Button } from "@/components/ui/button";
 const CartPage = () => {
   const items = useAppSelector((state) => state.cart.items);
+  console.log("items", items);
   const dispatch = useAppDispatch();
+
+  function cartTotal(items: CartItem[]) {
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }
+
+  const deliveryCharges: number = cartTotal(items) + 5;
+
   return (
     <>
       {items.length > 0 ? (
@@ -52,7 +60,7 @@ const CartPage = () => {
                   >
                     <div className="w-full md:max-w-[126px]">
                       <Image
-                        src={item.image}
+                        src={item.image[0]}
                         alt="perfume bottle image"
                         className="mx-auto rounded-xl object-cover"
                         width={200}
@@ -195,7 +203,7 @@ const CartPage = () => {
                       items {items.length}
                     </p>
                     <p className="font-medium text-lg leading-8 text-black">
-                      $480.00
+                      ${cartTotal(items)}
                     </p>
                   </div>
                   <form>
@@ -206,7 +214,7 @@ const CartPage = () => {
                       <div className="relative w-full">
                         <div className=" absolute left-0 top-0 py-3 px-4">
                           <span className="font-normal text-base text-gray-300">
-                            Second Delivery
+                            Delivery charges
                           </span>
                         </div>
                         <input
@@ -214,72 +222,6 @@ const CartPage = () => {
                           className="block w-full h-11 pr-10 pl-36 min-[500px]:pl-52 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-gray-400"
                           placeholder="$5.00"
                         />
-                        <button
-                          id="dropdown-button"
-                          data-target="dropdown-delivery"
-                          className="dropdown-toggle flex-shrink-0 z-10 inline-flex items-center py-4 px-4 text-base font-medium text-center text-gray-900 bg-transparent  absolute right-0 top-0 pl-2 "
-                          type="button"
-                        >
-                          <svg
-                            className="ml-2 my-auto"
-                            width="12"
-                            height="7"
-                            viewBox="0 0 12 7"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M1 1.5L4.58578 5.08578C5.25245 5.75245 5.58579 6.08579 6 6.08579C6.41421 6.08579 6.74755 5.75245 7.41421 5.08579L11 1.5"
-                              stroke="#6B7280"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            ></path>
-                          </svg>
-                        </button>
-                        <div
-                          id="dropdown-delivery"
-                          aria-labelledby="dropdown-delivery"
-                          className="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute top-10 bg-white right-0"
-                        >
-                          <ul
-                            className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdown-button"
-                          >
-                            <li>
-                              <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                Shopping
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                Images
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                News
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                              >
-                                Finance
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
                       </div>
                     </div>
                     <label className="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
@@ -328,7 +270,7 @@ const CartPage = () => {
                         {items.length}
                       </p>
                       <p className="font-semibold text-xl leading-8 text-indigo-600">
-                        $485.00
+                        ${deliveryCharges}
                       </p>
                     </div>
                     <button className="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">

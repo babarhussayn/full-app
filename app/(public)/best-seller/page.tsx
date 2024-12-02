@@ -4,7 +4,7 @@ import { getData } from "@/constants/service";
 
 const BestSellerPage = async () => {
   const products = await getData("product/all-product");
-  console.log("product: ", products.data[0]);
+
   return (
     <section className="w-full min-h-screen">
       <div className="flex justify-center items-center">
@@ -42,7 +42,7 @@ const BestSellerPage = async () => {
                         <h4>{items.name.toLocaleUpperCase()}</h4>
                         <p>{items.title.toLocaleUpperCase()}</p>
                         <span>{items.price}</span>
-                        <span></span>
+                        <span>{items.id}</span>
                       </div>
                     </div>
                   </div>

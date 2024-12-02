@@ -7,30 +7,52 @@ import Image from "next/image";
 import { useAppDispatch } from "@/redux/hooks";
 import { add, CartItem } from "@/redux/carSlice";
 import { getData } from "@/constants/service";
+
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   imageurl: string;
   title: string;
   price: number;
   description: string;
+  size: string;
 }
+
+interface SizeMap {
+  SM: string;
+  MD: string;
+  LG: string;
+  XL: string;
+}
+
+const sizeMap: SizeMap = {
+  SM: "small",
+  MD: "medium",
+  LG: "large",
+  XL: "large",
+};
+
 const products: Product[] = (await getData("product/all-product")).data;
 console.log(products);
-// console.log(Array.isArray(products));
+
 const Detail = () => {
   const dispatch = useAppDispatch();
 
+  const [productsItem, setProductItem] = useState<Product | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>(
+    productsItem?.size || ""
+  );
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddTo = () => {
     if (!productsItem || isAdded) return;
     const cartItem: CartItem = {
-      id: productsItem.id,
+      id: productsItem._id,
       name: productsItem.name,
       image: productsItem.imageurl,
       price: productsItem.price,
       quantity: 1,
+      size: selectedSize,
     };
     dispatch(add(cartItem));
     setIsAdded(true);
@@ -38,8 +60,6 @@ const Detail = () => {
   };
 
   const params = useParams();
-  console.log("params", params);
-  const [productsItem, setProductItem] = useState<Product | null>(null);
 
   useEffect(() => {
     const p = products.find(
@@ -54,6 +74,10 @@ const Detail = () => {
   if (!productsItem) {
     return <div>Loading...</div>;
   }
+
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+  };
 
   return (
     <section className="min-h-screen  flex justify-center">
@@ -83,7 +107,7 @@ const Detail = () => {
 
                 <div className="space-y-4">
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
-                    <Image src={productsItem?.imageurl[1]} alt="image" fill />
+                    <Image src={productsItem?.imageurl[0]} alt="image" fill />
                   </div>
 
                   <div className="bg-gray-100 p-4 flex items-center rounded sm:h-[182px] relative w-[200px]">
@@ -209,31 +233,25 @@ const Detail = () => {
                   Choose a Size
                 </h3>
                 <div className="flex flex-wrap gap-4 mt-4">
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-gray-800 font-semibold text-sm rounded-full flex items-center justify-center shrink-0"
-                  >
-                    SM
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-gray-800 border-gray-800 font-semibold text-sm rounded-full flex items-center justify-center shrink-0"
-                  >
-                    MD
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-gray-800 font-semibold text-sm rounded-full flex items-center justify-center shrink-0"
-                  >
-                    LG
-                  </button>
-                  <button
-                    type="button"
-                    className="w-12 h-12 border-2 hover:border-gray-800 font-semibold text-sm rounded-full flex items-center justify-center shrink-0"
-                  >
-                    XL
-                  </button>
+                  {Object.keys(sizeMap).map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => handleSizeChange(size)}
+                      className={`w-12 h-12 border-2 font-semibold text-sm rounded-full flex items-center justify-center shrink-0 ${
+                        selectedSize === size
+                          ? "border-gray-800"
+                          : "hover:border-gray-800"
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
                 </div>
+                <p className="mt-4 text-gray-600">
+                  Selected Size:{" "}
+                  <span className="font-bold">{selectedSize}</span>
+                </p>
               </div>
 
               <hr className="my-8" />

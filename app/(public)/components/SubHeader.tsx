@@ -16,7 +16,7 @@ const navItem: NavItem[] = [
   },
   {
     name: "Men",
-    link: "/products",
+    link: "/men",
   },
   {
     name: "Women",
@@ -76,8 +76,8 @@ const SubHeader = () => {
               className="cursor-pointer"
             />
           </div>
-          <div className="absolute translate-x-2 mb-10 text-[34px]">
-            {items.length}
+          <div className="absolute translate-x-4 mb-8  text-[20px] w-full h-full px-3 py-1 bg-[#88c8bc] rounded-full ">
+            <span className=" text-white ">{items.length}</span>
           </div>
         </div>
       </div>
