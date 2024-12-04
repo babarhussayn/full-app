@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactPage = () => {
   return (
-    <section>
+    <section className="">
       <div className="container my-12 mx-auto px-2 md:px-4">
         <section className="mb-32">
           <div className="flex justify-center">
