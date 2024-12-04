@@ -1,6 +1,22 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const ContactPage = () => {
+  const initailValues = { name: "", email: "", message: "" };
+
+  const [values, setValues] = useState(initailValues);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+  const handleSend = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setValues(initailValues);
+    console.log("values", values);
+  };
+
   return (
     <section className="">
       <div className="container my-12 mx-auto px-2 md:px-4">
@@ -12,7 +28,10 @@ const ContactPage = () => {
           </div>
 
           <div className="flex flex-wrap">
-            <form className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
+            <form
+              className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6"
+              onSubmit={handleSend}
+            >
               <div className="mb-3 w-full">
                 <label
                   className="block font-medium mb-[2px] text-teal-700"
@@ -22,8 +41,10 @@ const ContactPage = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  onChange={handleChange}
                   className="px-2 py-2 border w-full outline-none rounded-md"
-                  id="exampleInput90"
+                  value={values.name}
                   placeholder="Name"
                 />
               </div>
@@ -36,9 +57,12 @@ const ContactPage = () => {
                   Email
                 </label>
                 <input
+                  required
                   type="email"
+                  name="email"
+                  onChange={handleChange}
                   className="px-2 py-2 border w-full outline-none rounded-md"
-                  id="exampleInput90"
+                  value={values.email}
                   placeholder="Enter your email address"
                 />
               </div>
@@ -52,13 +76,14 @@ const ContactPage = () => {
                 </label>
                 <textarea
                   className="px-2 py-2 border rounded-[5px] w-full outline-none"
-                  name=""
-                  id=""
+                  name="message"
+                  onChange={handleChange}
+                  value={values.message}
                 ></textarea>
               </div>
 
               <button
-                type="button"
+                type="submit"
                 className="mb-6 inline-block w-full rounded bg-teal-400 px-6 py-2.5 font-medium uppercase leading-normal text-white hover:shadow-md hover:bg-teal-500"
               >
                 Send
